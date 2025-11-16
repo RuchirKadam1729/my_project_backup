@@ -173,8 +173,13 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @api_router.post("/auth/login", response_model=LoginResponse)
 async def login(login_data: LoginRequest):
+    # Map "root" username to email for convenience
+    email = login_data.username
+    if login_data.username == "root":
+        email = "root@jis.local"
+    
     # Check if username is email or actual username
-    user = await db.users.find_one({"email": login_data.username}, {"_id": 0})
+    user = await db.users.find_one({"email": email}, {"_id": 0})
     
     if not user or not verify_password(login_data.password, user["password"]):
         raise HTTPException(status_code=401, detail="Invalid username or password")
