@@ -440,11 +440,11 @@ async def shutdown_db_client():
 @app.on_event("startup")
 async def create_initial_data():
     # Create root user if not exists
-    existing_root = await db.users.find_one({"email": "root"})
+    existing_root = await db.users.find_one({"email": "root@jis.local"})
     if not existing_root:
         root_user = User(
             name="Root Administrator",
-            email="root",
+            email="root@jis.local",
             password=hash_password("password"),
             role="registrar"
         )
