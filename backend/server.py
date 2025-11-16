@@ -176,7 +176,7 @@ async def login(login_data: LoginRequest):
     # Map "root" username to email for convenience
     email = login_data.username
     if login_data.username == "root":
-        email = "root@jis.local"
+        email = "root@jis.system"
     
     # Check if username is email or actual username
     user = await db.users.find_one({"email": email}, {"_id": 0})
