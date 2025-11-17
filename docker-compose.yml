@@ -1,0 +1,71 @@
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7
+    container_name: judiciary_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=judiciary_db
+    restart: unless-stopped
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    image: python:3.11
+    volumes:
+      - ./backend:/data
+    ports:
+      - "9091:80"
+    working_dir: /data
+    command: sh -c "pip install -r requirements.txt && uvicorn server:app --host 0.0.0.0 --port 80 --reload"
+    stdin_open: true
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/judiciary_db
+      - JWT_SECRET=your-secret-key-change-this
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Frontend React App
+  frontend:
+    image: node:24-alpine
+    volumes:
+      - ./frontend:/data
+    ports:
+      - "9090:3000"
+    working_dir: /data
+    command: sh -c "yarn install && yarn start"
+    stdin_open: true
+    environment:
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Cloudflare Tunnel - Backend
+  tunnel-backend:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --url http://backend:80 --no-autoupdate
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Cloudflare Tunnel - Frontend
+  tunnel-frontend:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --url http://frontend:3000 --no-autoupdate
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+    driver: local
