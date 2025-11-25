@@ -108,24 +108,6 @@ export default function Login({ onLogin }) {
               </Button>
             </form>
 
-            {/* Demo Credentials */}
-            <div className="mt-6 pt-6 border-t border-slate-200">
-              <p className="text-xs text-slate-500 text-center mb-3">Demo Credentials</p>
-              <div className="space-y-2 text-xs text-slate-600">
-                <div className="flex justify-between p-2 bg-slate-50 rounded">
-                  <span className="font-medium">Root:</span>
-                  <span>root / password</span>
-                </div>
-                <div className="flex justify-between p-2 bg-slate-50 rounded">
-                  <span className="font-medium">Lawyer:</span>
-                  <span>lawyer@test.com / password</span>
-                </div>
-                <div className="flex justify-between p-2 bg-slate-50 rounded">
-                  <span className="font-medium">Judge:</span>
-                  <span>judge@test.com / password</span>
-                </div>
-              </div>
-            </div>
           </CardContent>
         </Card>
       </div>

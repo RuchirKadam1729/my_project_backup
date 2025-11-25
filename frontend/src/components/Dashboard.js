@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Scale, FileText, Briefcase, TrendingUp, LogOut, Menu, X } from "lucide-react";
 import { toast } from "sonner";
+import JudgeCalendar from "./JudgeCalendar";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -156,6 +157,13 @@ export default function Dashboard({ user, onLogout }) {
           <h2 className="text-3xl font-bold text-slate-900 mb-2">Welcome back, {user.name}</h2>
           <p className="text-slate-600">Here's what's happening in the judiciary system today.</p>
         </div>
+
+        {/* Show Calendar for Judges */}
+        {user.role === "judge" && (
+          <div className="mb-8">
+            <JudgeCalendar user={user} />
+          </div>
+        )}
 
         {/* Statistics Cards */}
         {stats && (
