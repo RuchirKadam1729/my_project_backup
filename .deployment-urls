@@ -1,0 +1,7 @@
+# Generated: Tue Nov 25 12:55:20 IST 2025
+BACKEND_URL=[1;33m⏳ Waiting for tunnel-backend tunnel...[0m
+[0;32m✅ tunnel-backend: https://receipt-size-dylan-when.trycloudflare.com[0m
+https://receipt-size-dylan-when.trycloudflare.com
+FRONTEND_URL=[1;33m⏳ Waiting for tunnel-frontend tunnel...[0m
+[0;32m✅ tunnel-frontend: https://saints-everyday-creates-chronic.trycloudflare.com[0m
+https://saints-everyday-creates-chronic.trycloudflare.com

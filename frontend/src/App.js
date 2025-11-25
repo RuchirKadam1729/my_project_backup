@@ -10,8 +10,8 @@ import Reports from "@/components/Reports";
 import Bills from "@/components/Bills";
 import { Toaster } from "@/components/ui/sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+//const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://receipt-size-dylan-when.trycloudflare.com';
+const API = `/api`;
 
 // Axios interceptor for auth token
 axios.interceptors.request.use(
