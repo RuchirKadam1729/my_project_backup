@@ -12,8 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `/api`;
 
 /* ------------------------------------------------------ */
 /* DATE UTILITIES — SAFE, NO TIMEZONE SHIFT */

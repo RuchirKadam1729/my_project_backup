@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Briefcase, DollarSign } from "lucide-react";
 import { toast } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `/api`;
 
 export default function Bills({ user, onLogout }) {
   const navigate = useNavigate();

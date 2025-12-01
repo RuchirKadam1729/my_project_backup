@@ -7,8 +7,7 @@ import { Scale, FileText, Briefcase, TrendingUp, LogOut, Menu, X } from "lucide-
 import { toast } from "sonner";
 import JudgeCalendar from "./JudgeCalendar";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `/api`;
 
 export default function Dashboard({ user, onLogout }) {
   const navigate = useNavigate();
